@@ -1,15 +1,22 @@
-# A/B Testing Experiment
 
-## Objective
-Compare two product variants to determine which improves conversion.
+# A/B Testing Experiment Analysis
 
-## Dataset
-ab_test_data.csv
+## Goal
+Evaluate whether product version B improves conversion compared to version A.
 
 ## Tasks
-- Calculate conversion rate per variant
-- Measure conversion uplift
-- Perform statistical significance testing
+1. Calculate conversion rate per variant.
+2. Compute uplift.
+3. Perform statistical significance testing using Python.
 
-## Tools
-Python, SQL
+## Example Python
+import pandas as pd
+
+df = pd.read_csv("ab_test_data.csv")
+conversion = df.groupby("variant")["converted"].mean()
+print(conversion)
+
+## Skills Demonstrated
+- Experiment Analysis
+- Statistical Testing
+- Product Metrics
