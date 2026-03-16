@@ -1,15 +1,23 @@
-# Conversion Funnel Analysis
 
-## Objective
-Analyze user journey across funnel stages to identify drop-off points.
+# User Conversion Funnel Analysis
 
-## Dataset
-funnel_data.csv
+## Goal
+Analyze product funnel stages from signup → activation → add_to_cart → purchase to identify drop-off points.
 
 ## Tasks
-- Calculate conversion rate per stage
-- Identify biggest drop-off stage
-- Visualize funnel performance
+1. Calculate conversion rates between funnel stages.
+2. Identify the stage with the largest drop-off.
+3. Visualize funnel performance in Power BI or Tableau.
 
-## Tools
-SQL, Python, Power BI
+## Example SQL
+SELECT
+SUM(signup) AS signup_users,
+SUM(activated) AS activated_users,
+SUM(added_to_cart) AS cart_users,
+SUM(purchased) AS purchasers
+FROM funnel_data;
+
+## Skills Demonstrated
+- Funnel Analysis
+- SQL Aggregation
+- Dashboard Visualization
