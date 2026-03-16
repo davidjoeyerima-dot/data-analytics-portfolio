@@ -1,12 +1,17 @@
-SELECT
-COUNT(*) AS total_users,
-SUM(signup) AS signup_users,
-SUM(activated) AS activated_users,
-SUM(added_to_cart) AS cart_users,
-SUM(purchased) AS purchasers,
+select
+count(*) as total_users,
 
-ROUND(SUM(activated)*100.0/SUM(signup),2) AS activation_rate,
-ROUND(SUM(added_to_cart)*100.0/SUM(activated),2) AS cart_rate,
-ROUND(SUM(purchased)*100.0/SUM(added_to_cart),2) AS purchase_rate
+sum(signup) as signup_users,
+sum(activated) as activated_users,
+sum(added_to_cart) as cart_users,
+sum(purchased) as purchasers,
 
-FROM funnel_data;
+round(sum(activated) * 100.0 / nullif(sum(signup), 0), 2) as activation_rate,
+round(sum(added_to_cart) * 100.0 / nullif(sum(activated), 0), 2) as cart_rate,
+round(sum(purchased) * 100.0 / nullif(sum(added_to_cart), 0), 2) as purchase_rate,
+
+round(100 - (sum(activated) * 100.0 / nullif(sum(signup), 0)), 2) as signup_dropoff,
+round(100 - (sum(added_to_cart) * 100.0 / nullif(sum(activated), 0)), 2) as activation_dropoff,
+round(100 - (sum(purchased) * 100.0 / nullif(sum(added_to_cart), 0)), 2) as cart_dropoff
+
+from funnel_data;
